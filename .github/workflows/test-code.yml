@@ -6,5 +6,13 @@ jobs:
         steps:
         - name: Get Code
           uses: actions/checkout@v4.1.1 # This is a GitHub Action that checks out your code. uses = action. checkout = action name. @v4.1.1 = version of the action.
-           
-
+        - name: Setup .NET Core SDK
+          uses: actions/setup-dotnet@v4.0.0
+          with:
+            dotnet-version: "8" # This is the version of .NET Core SDK that we want to use.
+        - name: Install dependencies
+          run: dotnet restore # This is a command that installs dependencies.
+        - name: Build app
+          run: dotnet build --no-restore # This is a command that builds the code.
+        - name: Test app
+          run: dotnet test --no-restore --verbosity normal # This is a command that runs tests.
