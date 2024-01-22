@@ -16,3 +16,9 @@ jobs:
           run: dotnet build --no-restore # This is a command that builds the code.
         - name: Test app
           run: dotnet test --no-restore --verbosity normal # This is a command that runs tests.
+        - name: Post issue
+          uses: dacbd/create-issue-action@main
+          with: 
+            token: ${{ secrets.TOKEN }}
+            title: Tests Failed!
+            body: Some tests didn't pass, fix it ples!
